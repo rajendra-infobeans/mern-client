@@ -3,8 +3,10 @@ import {useState, useEffect} from 'react';
 import axios from 'axios';
 
 import { useQuery, useMutation } from '@tanstack/react-query';
+import styled from 'styled-components';
+import Table from '../styles/table';
 
-export default function UserShow() {
+const UserShow = () => {
   const localBaseUrl = 'http://localhost:5000/';
   const [userList, setUserList] = useState<any[] | null>([]);
 
@@ -32,32 +34,22 @@ export default function UserShow() {
     .then((response) => {
       console.log(response.data, 'User delete successfully');
     })
+    .catch((error) => {
+      console.log('Error', error);
+    })
   }
   usersQuery?.data?.map((item:any) => console.log(item));
+  const userData = [{
+    regno : 'A',
+    name : 'A',
+    grade : 'A',
+    section : 'B'
+}];  
   return (
     <>
-    <h3>All users</h3>
-      <table aria-label="simple table">
-        <thead>
-          <tr>
-            <th>Reg No.</th>
-            <th align="right">Name</th>
-            <th align="right">grade</th>
-            <th align="right">Section</th>
-            <th align="right">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {/* {usersQuery?.data?.map((item:any) => {
-            <tr>
-              <td>{item.regno}</td>
-              <td>{item.regno}</td>
-              <td>{item.regno}</td>
-              <td>{item.regno}</td>
-            </tr>
-          })} */}
-        </tbody>
-      </table>
+      <Table data = {userList} deleteUser={deleteUser} />
     </>
   );
 }
+
+export default UserShow;

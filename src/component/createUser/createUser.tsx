@@ -27,7 +27,15 @@ flex-direction: column;
 gap: 10px;
 width: 500px;
 `;
+const InputFooter = styled.div`
+display: flex;
+flex-direction: row;
+justify-content: center;
+`;
 
+const ButtonSubmit = styled.button`
+padding: 10px;
+`;
 interface IUser {
     regno: string,
     name: string,
@@ -57,7 +65,8 @@ export default function CreateStudent() {
                 `http://localhost:5000/students`,
                 user
             )
-        }
+        },
+        enabled: false
     })
     
     const createUser = () => {
@@ -134,11 +143,10 @@ export default function CreateStudent() {
                 value={values.section}
               />
             </InputContainer>
- 
-              {errors.section && touched.section && errors.section}
-              <button type="submit" disabled={isSubmitting}>
-                Submit
-              </button>
+            {errors.section && touched.section && errors.section}
+            <InputFooter>
+            <ButtonSubmit type="submit" disabled={isSubmitting}>Submit</ButtonSubmit>
+            </InputFooter>
             </form>
           )}
         </Formik>

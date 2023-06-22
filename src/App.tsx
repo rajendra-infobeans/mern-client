@@ -1,13 +1,12 @@
 // import logo from './logo.svg';
 import './App.css';
 import React from 'react';
-import ShowUser from './component/showStudent/showStudent';
-import CreateUser from './component/createUser/createUser';
+import Users from './component/Users';
 
 function App() {
   return (
     <>
-    <CreateUser />
+    <Users />
     </>
   );
 }
